@@ -1,21 +1,54 @@
+// Car.js
 import React from 'react';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, useGLTF } from '@react-three/drei';
+import { OrbitControls } from '@react-three/drei';
+import { RingGeometry } from 'three';
 
-const CarModel = () => {
-  const { scene } = useGLTF('/path/to/your/bmw-car-model.glb'); // Replace with your model path
-  return <primitive object={scene} />;
+const Car = () => {
+  return (
+    <>
+  
+  <mesh>
+
+
+  
+      {/* Car Body */}
+      <boxGeometry args={[1.5, 0.5, 1.5]} />
+      <meshStandardMaterial color="blue" />
+
+      {/* Wheels */}
+      <mesh position={[-0.5, -1.9, 0.25]}>
+        <cylinderGeometry args={[0.2, 0.2, 4.1, 32]} />
+        <meshStandardMaterial color="black" />
+      </mesh>
+      <mesh position={[0.5, -1.9, 0.25]}>
+        <cylinderGeometry args={[0.2, .2, 4.1, 32]} />
+        <meshStandardMaterial color="black" />
+      </mesh>
+      <mesh position={[-0.5, -1.9, -0.25]}>
+        <cylinderGeometry args={[0.2, 0.2, 4.1, 32]} />
+        <meshStandardMaterial color="black" />
+      </mesh>
+      <mesh position={[0.5, -1.9, -0.25]}>
+        <cylinderGeometry args={[0.2, 0.2, 4.1, 32]} />
+        <meshStandardMaterial color="black" />
+      </mesh>
+      
+      </mesh>
+      
+    </>
+  );
 };
 
-const Car3D = () => {
+const Apps = () => {
   return (
-    <Canvas camera={{ position: [0, 2, 5], fov: 50 }}>
-      <ambientLight intensity={0.5} />
-      <directionalLight position={[10, 10, 5]} intensity={1} />
-      <CarModel />
+    <Canvas style={{ height: '100vh', width: '100vw' }}>
+      <ambientLight />
+      <pointLight position={[15, 15, 15]} />
+      <Car />
       <OrbitControls />
     </Canvas>
   );
 };
 
-export default Car3D;
+export default Apps;
